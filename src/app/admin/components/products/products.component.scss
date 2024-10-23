@@ -1,0 +1,24 @@
+.product-wrapper {
+  display: flex;
+  justify-content: space-between;
+  /* Boşluk ayarı */
+  align-items: flex-start;
+  /* Yükseklik hizalama */
+
+  app-create,
+  app-list {
+    flex: 1;
+    margin: 0 10px;
+    /* İki component arasında boşluk */
+  }
+
+  app-create {
+    max-width: 35%;
+    /* Form alanı için genişlik */
+  }
+
+  app-list {
+    max-width: 65%;
+    /* Liste için genişlik */
+  }
+}

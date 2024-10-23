@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.product-create {
+  margin: 10px 0;
+  width: 100%;
+
+  mat-form-field {
+    width: 100%; // Ensure fields take full width
+  }
+
+  .button-style {
+    margin-top: 15px;
+    background-color: #f0b429; // Custom color for button
+  }
+}
