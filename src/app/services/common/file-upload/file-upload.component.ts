@@ -26,18 +26,16 @@ export class FileUploadComponent {
     const fileData: FormData = new FormData();
     for (const file of files) {
       (file.fileEntry as FileSystemFileEntry).file((_file: File) => {
-        fileData.append(_file.name, _file, file.relativePath)
+        fileData.append("Files", _file, _file.name);
       })
     }
-
-
-
     this.httpClientService.post({
       controller: this.options.controller,
       action: this.options.action,
       queryString: this.options.queryString,
       headers: new HttpHeaders({ "responseType": "blob" })
     }, fileData).subscribe({
+
       next: () => {
         const succesmessage: string = "Dosyalar Başarı İle Yüklendi"
         if (this.options.isAdminPage) {
@@ -46,7 +44,8 @@ export class FileUploadComponent {
         else {
           this.customToastrService.message(succesmessage, "Başarılı!", { messageType: ToastrMessageType.Success, position: ToastrPosition.TopRight })
         }
-      }, error: () => {
+      }, error: (err) => {
+        console.log(err)
         const errormessage: string = "Dosyalar Yüklenirken Hata Oluştu"
         if (this.options.isAdminPage) {
           this.alertifyService.message(errormessage, { messageType: MessageType.Error, position: Position.TopRight })

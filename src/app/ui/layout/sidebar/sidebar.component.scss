@@ -1,0 +1,53 @@
+.sidebar {
+    background-color: #343a40;
+    /* Dark background */
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    padding: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+
+    .sidebar-header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .nav-links {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 20px;
+
+            a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                display: block;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    color: #007bff;
+                }
+            }
+        }
+    }
+
+    /* For collapsible sidebar functionality */
+    &.collapsed {
+        width: 60px;
+
+        .sidebar-header {
+            display: none;
+        }
+
+        .nav-links li a {
+            font-size: 0;
+        }
+    }
+}

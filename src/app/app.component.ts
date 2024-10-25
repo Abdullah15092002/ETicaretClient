@@ -16,19 +16,8 @@ declare var $: any;
 })
 export class AppComponent implements OnInit {
   title = 'ETicaretClient';
-  constructor(public authService: AuthService, private toastr: CustomToastrService, private router: Router) { }
-  signOut() {
-    localStorage.removeItem("AccessToken");
-    localStorage.removeItem("RefreshToken");
-    this.authService.IdentityCheck();
-    this.router.navigate([""])
-    this.toastr.message("Oturumunuz Sonlandırıldı", "!", {
-      messageType: ToastrMessageType.Info,
-      position: ToastrPosition.BottomRight
-    })
+  constructor() { }
 
-
-  }
   ngOnInit(): void {
 
   }

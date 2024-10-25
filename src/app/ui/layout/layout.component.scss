@@ -1,0 +1,73 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* Tam ekran yüksekliği */
+    margin: 0;
+    padding: 0;
+}
+
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* Layout'un tamamını ekrana yay */
+}
+
+.content-container {
+    display: flex;
+    flex: 1;
+    /* Sidebar ve içeriğin kalan alanı doldurmasını sağlar */
+    min-height: 0;
+    /* Flex yapısında taşmayı önler */
+}
+
+app-mainbar {
+    height: 60px;
+    /* Header (mainbar) yüksekliği */
+    background-color: #f8f9fa;
+    /* Açık arka plan rengi */
+    border-bottom: 1px solid #ddd;
+    /* Alt çizgiyle ayırt etme */
+}
+
+app-sidebar {
+    width: 250px;
+    /* Sidebar genişliği */
+    background-color: #343a40;
+    /* Sidebar koyu arka plan rengi */
+    color: white;
+    /* Sidebar metin rengi */
+    flex-shrink: 0;
+    /* Sidebar'ın daralmasını engeller */
+    overflow-y: auto;
+    /* Çok fazla içerik olursa kaydırma */
+}
+
+.main-content {
+    flex: 1;
+    /* İçerik alanının genişlemesini sağlar */
+    padding: 20px;
+    /* İçerik alanına boşluk */
+    background-color: #f1f3f5;
+    /* İçerik arka plan rengi */
+    overflow-y: auto;
+    /* İçerik kısmı taşarsa kaydırma sağlar */
+    min-height: 0;
+    /* İçerik alanının doğru görünmesi için */
+}
+
+app-footer {
+    height: 30px;
+    /* Footer yüksekliği */
+    background-color: #f8f9fa;
+    /* Footer arka plan rengi */
+    text-align: center;
+    /* Metni ortalar */
+    line-height: 30px;
+    /* Yüksekliğe göre ortalanmış metin */
+    border-top: 1px solid #ddd;
+    /* Üst çizgiyle ayırt etme */
+    flex-shrink: 0;
+    /* Footer'ın daralmasını engeller */
+}

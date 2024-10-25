@@ -15,7 +15,7 @@ import { HttpErrorHandlerInterceptorService } from './services/common/http-error
 import { DeleteDirective } from './directives/admin/delete.directive';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import { BaseComponent } from './base/base.component';
-import { LayoutModule } from './admin/layout/layout.module';
+import { LayoutModule } from './ui/layout/layout.module';
 
 
 

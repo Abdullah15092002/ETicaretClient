@@ -1,117 +1,70 @@
-$primary-color: #5a67d8; // Mor tonunda bir ana renk
-$secondary-color: #1d4149; // Kırmızı tonunda ikinci renk
-$light-color: #f8f9fa; // Açık gri tonları
-$dark-color: #343a40; // Koyu gri tonları
-$hover-color: #4c51bf; // Hover efektleri için koyu mor
+.main-content {
+    flex: 1;
+    /* İçerik alanının genişlemesini sağlar */
+    padding: 20px;
+    /* İçerik alanına boşluk */
+    background-color: #f1f3f5;
+    /* İçerik arka plan rengi */
+    overflow-y: auto;
+    /* İçerik kısmı taşarsa kaydırma sağlar */
+    min-height: 0;
+    /* İçerik alanının doğru görünmesi için */
+}
 
-// Genel yapıya estetik kazandırmak için padding ve margin ayarları
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5f5f5; // Arka planı soft bir gri yapalım
-    color: $dark-color;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
 }
 
-// Navbar stil düzenlemeleri
-.navbar {
-    background-color: $light-color;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Gölge efekti
-    padding: 1rem 2rem;
-    border-radius: 8px;
-
-    .navbar-brand {
-        font-weight: 600;
-        color: $primary-color;
-        font-size: 1.5rem;
-    }
-
-    .navbar-nav .nav-item .nav-link {
-        color: $dark-color;
-        margin-left: 1rem;
-        font-weight: 500;
-        font-size: 1rem;
-
-        &:hover {
-            color: $primary-color; // Hover efekti
-            transition: color 0.3s ease-in-out;
-        }
-
-        &.active {
-            color: $secondary-color; // Aktif olan linkin rengi
-            font-weight: 700;
-        }
-    }
-
-    .btn-outline-success {
-        color: $primary-color;
-        border-color: $primary-color;
-        font-weight: 500;
-
-        &:hover {
-            background-color: $primary-color;
-            color: #fff;
-            border-color: $primary-color;
-        }
-    }
-}
-
-// Butonlar için stil
-button {
-    background-color: $primary-color;
-    color: white;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-
-    &:hover {
-        background-color: $hover-color;
-        transition: background-color 0.3s ease-in-out;
-    }
-}
-
-// Yönetim paneli butonu
-a.btn-outline-success {
-    margin-left: 1rem;
-}
-
-// Sayfa içeriği düzeni
-.container-fluid {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
+// Row ve Column ayarları
 .row {
-    margin-bottom: 2rem;
+    margin: 0;
 }
 
-// Router outlet containerına margin ekleme
-router-outlet {
-    padding-top: 2rem;
+.col-md-12 {
+    padding: 20px;
 }
 
-// Çıkış yap linki için özel stil
-.nav-item .nav-link[style*="color:red"] {
-    color: $secondary-color !important;
+// Modal stil ayarları
+.modal {
+    &.fade {
+        transition: opacity 0.5s ease;
+    }
 
-    &:hover {
-        color: darken($secondary-color, 10%) !important;
-        text-decoration: underline;
+    .modal-dialog {
+        max-width: 90%;
+        margin: 1.75rem auto;
+    }
+
+    .modal-content {
+        border-radius: 0.5rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
 }
 
-// Sayfanın genel fontları ve başlıklar
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 700;
-    color: $dark-color;
-}
+// Spinner bileşenleri
+ngx-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; // Sayfanın tamamını kaplamak için
 
-p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    &.default {
+        margin: 20px;
+    }
+
+    // Spinner tipleri için özel stiller
+    &.ball-atom {
+        color: #007bff;
+    }
+
+    &.ball-scale-multiple {
+        color: #28a745;
+    }
+
+    &.ball-spin-clockwise-fade-rotating {
+        color: #dc3545;
+    }
 }

@@ -75,12 +75,12 @@ export class ListComponent extends BaseComponent implements OnInit {
 
 
   async addToBasket(product: List_Product) {
-    this.showSpinner(SpinnerTypes.BallAtom)
+    this.showSpinner(SpinnerTypes.BallSpinClockwiseFadeRotating)
     let _basketItem: CreateBasketItem = new CreateBasketItem();
     _basketItem.productId = product.id;
     _basketItem.quantity = 1;
     await this.basketService.add(_basketItem)
-    this.hideSpinner(SpinnerTypes.BallScaleMultiple)
+    this.hideSpinner(SpinnerTypes.BallSpinClockwiseFadeRotating)
     this.toastr.message("Ürün Sepete Eklendi", "SepetGüncellendi", { messageType: ToastrMessageType.Success, position: ToastrPosition.TopRight })
   }
 }

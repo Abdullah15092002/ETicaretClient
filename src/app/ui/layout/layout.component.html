@@ -1,1 +1,18 @@
-<p>layout works!</p>
+<div class="layout-container">
+    <!-- Üstteki mainbar -->
+    <app-mainbar></app-mainbar>
+
+    <div class="content-container">
+        <!-- Soldaki sidebar -->
+        <app-sidebar></app-sidebar>
+
+        <!-- İçerik kısmı -->
+        <div class="main-content">
+            <!-- Burada diğer bileşenler render edilecek -->
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+    <!-- Alttaki footer -->
+    <app-footer></app-footer>
+</div>
