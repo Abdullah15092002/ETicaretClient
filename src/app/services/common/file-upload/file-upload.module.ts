@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FileUploadComponent } from './file-upload.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { RouterModule } from '@angular/router';
+import { DialogsModule } from '../../../dialogs/dialogs.module';
 
 
 
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     NgxFileDropModule,
+    DialogsModule
   ],
   exports: [
     FileUploadComponent

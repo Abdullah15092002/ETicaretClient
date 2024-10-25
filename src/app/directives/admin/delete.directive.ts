@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent, DeleteState } from '../../dialogs/delete-dialog/delete-dialog.component';
 import { HttpClientService } from '../../services/common/http-client.service';
 import { AlertifyOptions, AlertifyService, MessageType } from '../../services/admin/alertify.service';
+import { DialogService } from '../../services/common/dialog.service';
 
 declare var $: any;
 @Directive({
@@ -18,7 +19,8 @@ export class DeleteDirective {
     //private productService: ProductsService,
     private httpClientService: HttpClientService,
     public dialog: MatDialog,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private dialogService: DialogService
   ) {
     //Üzerinde çalıştığımız DOM nesnesine img etiketini vermek için
 
@@ -40,41 +42,29 @@ export class DeleteDirective {
   @Input() controller: string;
   @Output() callback: EventEmitter<any> = new EventEmitter();
   @HostListener("click")
+
   onClick() {
-
-    this.openDialog(() => {
-
-      const td: HTMLTableCellElement = this.element.nativeElement;
-      //   this.productService.delete(this.id).then(isdeleted => { console.log(isdeleted) });
-      this.httpClientService.delete({ controller: this.controller }, this.id,).subscribe({
-        next: () => {
-          this.alertify.message("Ürün Başarı ile silindi", { messageType: MessageType.Success, })
-          $(td.parentElement).fadeOut(1000, () => {
-            if (this.callback) {
-              this.callback.emit();
-            } else {
-              console.log("callback tanımlı değil")
-            }
-          })
-        }
-      })
-
-    })
-  }
-
-  openDialog(afterClosed: any): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '250px',
-      data: DeleteState.Delete
-    })
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == DeleteState.Delete) {
-        afterClosed();
+    this.dialogService.openDialog({
+      options: { height: "250px", width: "250px" },
+      componentType: DeleteDialogComponent,
+      data: DeleteState.Delete,
+      afterClosed: async () => {
+        const td: HTMLTableCellElement = this.element.nativeElement;
+        //   this.productService.delete(this.id).then(isdeleted => { console.log(isdeleted) });
+        this.httpClientService.delete({ controller: this.controller }, this.id,).subscribe({
+          next: () => {
+            this.alertify.message("Ürün Başarı ile silindi", { messageType: MessageType.Success, })
+            $(td.parentElement).fadeOut(1000, () => {
+              if (this.callback) {
+                this.callback.emit();
+              } else {
+                console.log("callback tanımlı değil")
+              }
+            })
+          }
+        })
       }
-
-    });
-
-  }
+    })
+  }//onclick
 
 }

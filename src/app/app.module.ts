@@ -16,6 +16,7 @@ import { DeleteDirective } from './directives/admin/delete.directive';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import { BaseComponent } from './base/base.component';
 import { LayoutModule } from './ui/layout/layout.module';
+import { FileuploadDialogComponent } from './dialogs/fileupload-dialog/fileupload-dialog.component';
 
 
 
@@ -24,6 +25,7 @@ import { LayoutModule } from './ui/layout/layout.module';
   declarations: [
     AppComponent,
     BaseComponent,
+
 
 
 
