@@ -1,15 +1,14 @@
-import { AfterContentChecked, Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../../services/admin/model/products.service';
 import { List_Product } from '../../../../contracts/list_product';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { PaginatorProduct } from '../../../../contracts/paginator_product';
 import { BasketService } from '../../../../services/common/basket.service';
 import { CreateBasketItem } from '../../../../contracts/basket/create_basket_item';
 import { BaseComponent, SpinnerTypes } from '../../../../base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../../../services/ui/custom-toastr.service';
-
+import { PaginatorProductt } from '../../../../contracts/Paginatorproductt';
+import { ProductImagee } from '../../../../contracts/productimagee';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -26,9 +25,9 @@ export class ListComponent extends BaseComponent implements OnInit {
   currentPageNo: number;
   totalProductCount: number;
   totalPageCount: number;
-  pageSize: number = 6;
+  pageSize: number = 4;
   pageList: number[] = [];
-  products: List_Product[];
+  products: ProductImagee[]
 
 
 
@@ -38,13 +37,12 @@ export class ListComponent extends BaseComponent implements OnInit {
       this.currentPageNo = parseInt(params['pageNo'] ?? 1);
 
       try {
-        const data: { totalProductCount: number, products: List_Product[] } =
+        const data: PaginatorProductt =
           await this.productService.read(this.currentPageNo - 1, this.pageSize,
             () => { console.log('Products fetched successfully'); },
             (errorMessage: string) => { console.error('Error fetching products:', errorMessage); });
 
-
-        this.products = data.products;
+        this.products = data.products
         this.totalProductCount = data.totalProductCount
         this.totalPageCount = Math.ceil(this.totalProductCount / this.pageSize)
 
@@ -74,7 +72,7 @@ export class ListComponent extends BaseComponent implements OnInit {
   }
 
 
-  async addToBasket(product: List_Product) {
+  async addToBasket(product: ProductImagee) {
     this.showSpinner(SpinnerTypes.BallSpinClockwiseFadeRotating)
     let _basketItem: CreateBasketItem = new CreateBasketItem();
     _basketItem.productId = product.id;
@@ -82,6 +80,10 @@ export class ListComponent extends BaseComponent implements OnInit {
     await this.basketService.add(_basketItem)
     this.hideSpinner(SpinnerTypes.BallSpinClockwiseFadeRotating)
     this.toastr.message("Ürün Sepete Eklendi", "SepetGüncellendi", { messageType: ToastrMessageType.Success, position: ToastrPosition.TopRight })
+  }
+
+  getProducts() {
+
   }
 }
 

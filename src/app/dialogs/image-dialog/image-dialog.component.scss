@@ -1,0 +1,46 @@
+button {
+
+    // Butonlar arası boşluk eklemek için
+    margin-right: 10px; // Son buton hariç, tüm butonlara boşluk eklemek için
+
+    // Buton boyutunu büyütmek için
+    padding: 8px 16px;
+    font-size: 16px; // Yazı boyutunu büyütme
+
+    // Hatlarını belirginleştirmek için
+    border: 2px solid #d20d0d; // İstediğiniz renge göre ayarlayın
+    border-radius: 4px;
+
+    // İsteğe bağlı olarak butona hover efekti ekleyebilirsiniz
+    &:hover {
+        background-color: #d20d0d; // Hover rengini ayarlayın
+    }
+}
+
+.example-card {
+    float: left;
+    margin: 10px;
+    max-width: 300px;
+    max-height: 400px;
+    border: 2px solid #ccc; // Çerçeve rengini ve kalınlığını ayarlayın
+    border-radius: 15px; // Köşe yumuşatma (daha yuvarlak köşeler için artırabilirsiniz)
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); // Hafif bir gölge ekleyin
+    transition: all 0.3s ease;
+}
+
+
+
+.title {
+    text-align: right;
+    font-size: large;
+    font-weight: 600;
+    color: black;
+}
+
+.card-image {
+    margin-left: 30px;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+    margin-top: 0.5rem;
+}

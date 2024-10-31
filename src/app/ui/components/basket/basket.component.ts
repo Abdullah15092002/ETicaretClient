@@ -12,19 +12,25 @@ declare var $: any;
   styleUrl: './basket.component.scss'
 })
 export class BasketComponent extends BaseComponent implements OnInit {
+  basketItems: ListBasketItem[];
 
   constructor(private basketService: BasketService, spinner: NgxSpinnerService) {
     super(spinner)
   }
-  async removeBasketItem(basketItemId: string) {
-    this.showSpinner(SpinnerTypes.BallAtom)
+  async removeBasketItem(basketItemId: string, event: any) {
+
+    this.showSpinner(SpinnerTypes.BallAtom);
     await this.basketService.remove(basketItemId)
-    $("." + basketItemId).fadeOut(500, () => { this.hideSpinner(SpinnerTypes.BallAtom) });
+    var card = $(event.srcElement).parent().parent();
+    card.fadeOut(500);
+    this.hideSpinner(SpinnerTypes.BallAtom);
+
 
   }
   async changeQuantity(object: any) {
     this.showSpinner(SpinnerTypes.BallAtom)
     const basketItemId: string = object.target.attributes["id"].value;
+    debugger;
     const quantity: number = object.target.value;
     const _basketItem: UpdateBasket = new UpdateBasket();
     _basketItem.basketItemId = basketItemId;
@@ -33,7 +39,7 @@ export class BasketComponent extends BaseComponent implements OnInit {
     this.hideSpinner(SpinnerTypes.BallAtom)
   }
 
-  basketItems: ListBasketItem[];
+
   async ngOnInit() {
 
     this.basketItems = await this.basketService.get();

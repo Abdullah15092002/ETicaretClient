@@ -1,3 +1,51 @@
-nav[aria-label="Page navigation example"] {
-    margin-top: 100px; /* İstediğiniz boşluk miktarına göre değeri ayarlayabilirsiniz */
+.example-card {
+    margin-left: 25px;
+    max-width: 600px;
+    max-height: 600px;
+    border: 2px solid #ccc; // Çerçeve rengini ve kalınlığını ayarlayın
+    border-radius: 15px; // Köşe yumuşatma (daha yuvarlak köşeler için artırabilirsiniz)
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); // Hafif bir gölge ekleyin
+    transition: all 0.3s ease;
+}
+
+
+
+.title {
+    text-align: right;
+    font-size: large;
+    font-weight: 600;
+    color: black;
+}
+
+.card-image {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+    margin-top: 0.5rem;
+}
+
+.content-container {
+    display: flex; // Resim ve bilgileri yan yana hizalar
+    align-items: center; // Resim ve metinleri dikeyde ortalar
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column; // Bilgilerin dikeyde hizalanması
+    gap: 0.5rem; // Bilgiler arasındaki boşluk
+}
+
+.price,
+.stock {
+    font-size: large;
+    font-weight: 600;
+    color: black
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap; // Kartlar ekranın sonuna ulaştığında alt satıra geçmesini sağlar
+    gap: 16px; // Kartlar arasındaki boşluk
+    justify-content: flex-start; // Kartların sola hizalanması
+    margin-bottom: 100px;
 }

@@ -7,6 +7,7 @@ import { AlertifyService, MessageType, Position } from '../../admin/alertify.ser
 import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from '../dialog.service';
 import { FileuploadDialogComponent, FileUploadState } from '../../../dialogs/fileupload-dialog/fileupload-dialog.component';
+import { ImageDialogComponent } from '../../../dialogs/image-dialog/image-dialog.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -16,6 +17,7 @@ import { FileuploadDialogComponent, FileUploadState } from '../../../dialogs/fil
 export class FileUploadComponent {
 
   constructor(
+    private imageDialogComponent: ImageDialogComponent,
     private httpClientService: HttpClientService,
     private customToastrService: CustomToastrService,
     private alertifyService: AlertifyService,
@@ -50,6 +52,7 @@ export class FileUploadComponent {
 
           next: () => {
             const succesmessage: string = "Dosyalar Başarı İle Yüklendi"
+            this.imageDialogComponent.refreshImage();
             if (this.options.isAdminPage) {
               this.alertifyService.message(succesmessage, { messageType: MessageType.Success, position: Position.TopRight })
             }

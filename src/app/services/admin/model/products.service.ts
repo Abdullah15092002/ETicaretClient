@@ -4,8 +4,9 @@ import { Create_Product } from '../../../contracts/create_product';
 import { error } from 'console';
 import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
-import { List_Product } from '../../../contracts/list_product';
 import { PaginatorProduct } from '../../../contracts/paginator_product';
+import { ProductImage } from '../../../contracts/productImage';
+import { PaginatorProductt } from '../../../contracts/Paginatorproductt';
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +41,9 @@ export class ProductsService {
   }
 
   async read(page: number = 0, size: number = 3, succesCallBack?: () => void,
-    errorCallBack?: (errorMessage: string) => void): Promise<PaginatorProduct> {
+    errorCallBack?: (errorMessage: string) => void): Promise<PaginatorProductt> {
 
-    const promiseData: Promise<PaginatorProduct> = lastValueFrom(this.httpClientService.get<PaginatorProduct>({
+    const promiseData: Promise<PaginatorProductt> = lastValueFrom(this.httpClientService.get<PaginatorProductt>({
       controller: "products",
       queryString: `page=${page}&size=${size}`
     }))
@@ -51,7 +52,19 @@ export class ProductsService {
     return await promiseData;
 
   }
+  async readImages(id: string): Promise<ProductImage[]> {
+    const getObservable: Observable<ProductImage[]> = this.httpClientService.get<ProductImage[]>
+      ({ action: "getProductImages", controller: "products", }, id)
 
-
+    return await firstValueFrom(getObservable)
+  }
+  async deleteImage(productid: string, imageid: string) {
+    const observable: Observable<any> = this.httpClientService.delete({
+      action: "deleteProductImage",
+      controller: "products",
+      queryString: `id=${productid}`
+    }, imageid)
+    return await firstValueFrom(observable)
+  }
 
 }

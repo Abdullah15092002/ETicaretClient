@@ -16,10 +16,11 @@ export class DialogService {
 
   openDialog(dialogParameters: Partial<DialogParameters>): void {
     const dialogRef = this.dialog.open(dialogParameters.componentType, {
+
       width: dialogParameters.options?.width,
       height: dialogParameters.options?.height,
       data: dialogParameters?.data,
-      position: dialogParameters?.options.position
+      position: dialogParameters.options?.position
 
     })
 

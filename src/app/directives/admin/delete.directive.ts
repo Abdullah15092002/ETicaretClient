@@ -25,10 +25,10 @@ export class DeleteDirective {
     //Üzerinde çalıştığımız DOM nesnesine img etiketini vermek için
 
     const img = _renderer.createElement("img");
-    img.setAttribute("src", "../../../../../assets/delete.png")
+    img.setAttribute("src", "../../../../../assets/deletepng.png")
     img.setAttribute("style", "cursor:pointer;")
-    img.width = 15
-    img.height = 15
+    img.width = 25
+    img.height = 25
     _renderer.appendChild(element.nativeElement, img);
 
     // element DOM nesnesinin referansını tutuyor element.nativeElement diyerek dom nesnesine erişiyoruz ve  oluşturduğumuz img etiketini eklemiş oluyoruz

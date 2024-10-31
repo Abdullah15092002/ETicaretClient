@@ -1,7 +1,9 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { extend } from 'jquery';
 import { BaseDialog } from '../base/base-dialog';
+import { ProductsService } from '../../services/admin/model/products.service';
+import { ProductImage } from '../../contracts/productImage';
 
 
 
@@ -19,6 +21,7 @@ export class DeleteDialogComponent extends BaseDialog<DeleteDialogComponent> {
   ) {
     super(dialogRef)
   }
+
 }
 export enum DeleteState {
   Delete

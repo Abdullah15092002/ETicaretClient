@@ -11,59 +11,62 @@ import { Create_User } from '../../../contracts/user/create_user';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit{
-  
-  constructor(private formBuilder:FormBuilder,private userService:UserService,private toastr:CustomToastrService){}
-  
-  frm:FormGroup;
+export class RegisterComponent implements OnInit {
+
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: CustomToastrService) { }
+
+  frm: FormGroup;
   ngOnInit(): void {
-    this.frm=this.formBuilder.group({
-      nameSurname:["",[
+    this.frm = this.formBuilder.group({
+      nameSurname: ["", [
         Validators.required,
         Validators.maxLength(25),
         Validators.minLength(3)]
-    ],
-      userName:["",[
+      ],
+      userName: ["", [
         Validators.required,
         Validators.maxLength(15),
         Validators.minLength(3)]],
-      email:["",[
+      email: ["", [
         Validators.required,
         Validators.email]],
-      password:["",[
+      password: ["", [
         Validators.required,
         Validators.maxLength(20),
         Validators.minLength(3)]],
-        passwordConfirm:["",[
-          Validators.required,
-          Validators.maxLength(20),
-          Validators.minLength(3)]]
+      passwordConfirm: ["", [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(3)]]
     })
   }
-  get component(){
+  get component() {
     return this.frm.controls;
   }
 
-  submitted:boolean=false;
+  submitted: boolean = false;
 
- async onSubmit(user:User){
+  async onSubmit(user: User) {
 
-    this.submitted=true;
+    this.submitted = true;
 
-    if (this.frm.invalid) 
+    if (this.frm.invalid)
       return;
- const result:Create_User= await this.userService.create(user)
+    const result: Create_User = await this.userService.create(user)
 
- if (result.succeeded) {
-  this.toastr.message(result.message,"BAŞARILI",{
-    messageType:ToastrMessageType.Success,
-    position:ToastrPosition.BottomRight}
-  )
- }
- else{
-  this.toastr.message(result.message,"HATA",{
-    messageType:ToastrMessageType.Error,
-    position:ToastrPosition.BottomRight})
- }
+    if (result.succeeded) {
+      this.toastr.message(result.message, "BAŞARILI", {
+        messageType: ToastrMessageType.Success,
+        position: ToastrPosition.BottomRight
+      }
+      )
+    }
+    else {
+      this.toastr.message(result.message, "HATA", {
+
+        messageType: ToastrMessageType.Error,
+        position: ToastrPosition.TopRight
+      })
+    }
   }
 }
